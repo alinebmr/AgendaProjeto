@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainScreenController">
+   <children>
+      <DatePicker fx:id="campoData" layoutX="29.0" layoutY="54.0" onAction="#datePicker" />
+      <Label layoutX="108.0" layoutY="14.0" text="Digite a data desejada para verificar os cadastros do respectivo dia:" />
+      <TableView fx:id="tableViewCadastros" layoutX="29.0" layoutY="104.0" prefHeight="247.0" prefWidth="455.0">
+         <columns>
+            <TableColumn fx:id="tableColumnData" prefWidth="71.0" text="Data" />
+            <TableColumn fx:id="tableColumnHorario" prefWidth="78.0" text="Horário" />
+            <TableColumn fx:id="tableColumnNome" prefWidth="111.0" text="Nome" />
+            <TableColumn fx:id="tableColumnServico" prefWidth="88.0" text="Servico" />
+            <TableColumn fx:id="tableColumnTelefone" prefWidth="106.0" text="Telefone" />
+         </columns>
+      </TableView>
+      <Button fx:id="buttonCancelar" layoutX="29.0" layoutY="363.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Cancelar" />
+      <Button fx:id="buttonAtualizar" layoutX="421.0" layoutY="54.0" mnemonicParsing="false" text="Atualizar" />
+      <Button fx:id="buttonCadastrar" layoutX="354.0" layoutY="363.0" mnemonicParsing="false" text="Cadastrar novo horário" />
+      <Button fx:id="buttonEditar" layoutX="124.0" layoutY="363.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Editar" />
+   </children>
+</Pane>

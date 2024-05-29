@@ -1,0 +1,16 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "d:\\JavaLibs\\javafx-sdk-22\\lib\\javafx.base.jar",
+        "d:\\JavaLibs\\javafx-sdk-22\\lib\\javafx.controls.jar",
+        "d:\\JavaLibs\\javafx-sdk-22\\lib\\javafx.fxml.jar",
+        "d:\\JavaLibs\\javafx-sdk-22\\lib\\javafx.graphics.jar",
+        "d:\\JavaLibs\\javafx-sdk-22\\lib\\javafx.media.jar",
+        "d:\\JavaLibs\\javafx-sdk-22\\lib\\javafx.swing.jar",
+        "d:\\JavaLibs\\javafx-sdk-22\\lib\\javafx.web.jar",
+        "d:\\JavaLibs\\javafx-sdk-22\\lib\\javafx-swt.jar",
+        "drive/jaybird-5.0.4.java11.jar"
+    ]
+}

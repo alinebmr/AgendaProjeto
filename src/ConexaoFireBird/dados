@@ -1,0 +1,9 @@
+Class.forName("org.firebirdsql.jdbc.FBDriver");
+         con =
+            DriverManager.getConnection(
+               "jdbc:firebirdsql:192.168.88.250:D:/dados/Salao/Onildo/dados.GDB",
+               "sysdba",
+               "masterkey");
+         stm = con.createStatement();
+
+         yyyy-mm-dd hh:mm:ss[.fffffffff]
