@@ -1,7 +1,7 @@
 package Agenda;
 
 public class Agenda {
-    
+
     private Long registro = (long) 1;
     private String nomeCliente;
     private String telefone;
@@ -11,17 +11,21 @@ public class Agenda {
     private String data;
     private char status;
 
-    public Agenda(){
+    public Agenda() {
 
     }
 
-    public Agenda(String nomeCliente, String telefone_Cliente, String dataHora, String nomeServico,Long registro) {
-        
+    public Agenda(String nomeCliente, String telefone_Cliente, String dataHora, String nomeServico, Long registro) {
+
         this.nomeCliente = nomeCliente;
         this.telefone = telefone_Cliente;
         this.servico = nomeServico;
         this.registro = registro;
+        this.status = 'A';
         this.dataHora = dataHora;
+        setData(dataHora);
+        setHora(dataHora);
+
     }
 
     public Long getRegistro() {
@@ -42,21 +46,28 @@ public class Agenda {
 
     public void setDataHora(String dataHora) {
         this.dataHora = dataHora;
-        if(dataHora != null){
+        if (dataHora != null) {
             String dataHoraSplit[] = dataHora.split(" ");
-            setData(dataHoraSplit[0]);
+            this.data = dataHoraSplit[0];
             String horaSplit[] = dataHoraSplit[1].split(":");
-            setHora(horaSplit[0] + ":" + horaSplit[1]);
+            hora = horaSplit[0] + ":" + horaSplit[1];
+
+        }
+        setData(data);
+        setHora(hora);
+    }
+
+    public void setHora(String hora) {
+        if (dataHora != null) {
+            String dataHoraSplit[] = dataHora.split(" ");
+            this.hora = horaSplit[0] + ":" + horaSplit[1];
 
         }
     }
 
-    public void setHora(String hora){
-        this.hora = hora;
-    }
-
-     public void setData(String data){
+    public void setData(String data) {
         this.data = data;
+
     }
 
     public String getServico() {
@@ -96,44 +107,32 @@ public class Agenda {
         this.registro = l;
     }
 
-    public void setTelefone(String telefone){
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
-    public String getTelefone(){
+    public String getTelefone() {
         return this.telefone;
     }
 
-    public String getHora(){
+    public String getHora() {
         return this.hora;
     }
 
-    public String getData(){
+    public String getData() {
         return this.data;
     }
 
-    public void cancelarHorario(){
+    public void cancelarHorario() {
         this.status = 'C';
     }
 
-    public char getStatus(){
+    public char getStatus() {
         return this.status;
     }
 
-    public void setStatus(char status){
+    public void setStatus(char status) {
         this.status = status;
     }
-
-
-    
-    
-    
-    
-
-
-
-    
-
-
 
 }

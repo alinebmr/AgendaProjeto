@@ -10,11 +10,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Labeled;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-public class AlterarPessoaController implements Initializable{
+public class AlterarPessoaController implements Initializable {
 
     @FXML
     private Button buttonCancelar;
@@ -43,8 +42,7 @@ public class AlterarPessoaController implements Initializable{
 
     private String myFormattedDate;
 
-
-    public void fecha(){
+    public void fecha() {
         AppAlterarPessoa.getStage().close();
     }
 
@@ -66,13 +64,12 @@ public class AlterarPessoaController implements Initializable{
 
     }
 
-    public void initPerson(){
+    public void initPerson() {
         campoNome.setText(agenda.getNomeCliente());
         campoServico.setText(agenda.getServico());
         campoTelefone.setText(agenda.getTelefone());
         campoHorario.setText(agenda.getHora());
         campoData.setValue(LocalDate.parse(agenda.getData()));
-
 
     }
 
@@ -84,24 +81,21 @@ public class AlterarPessoaController implements Initializable{
         AlterarPessoaController.agenda = agenda;
     }
 
-    public void atualiza(){
+    public void atualiza() {
         AgendaDAO dao = new AgendaDAO();
         String nome = campoNome.getText();
         String telefone = campoTelefone.getText();
         String servico = campoServico.getText();
         String hora = campoHorario.getText();
-        String dataHora = myFormattedDate + " " + hora;
         Agenda a = new Agenda();
         a.setNomeCliente(nome);
         a.setServico(servico);
         a.setTelefone(telefone);
         a.setTelefone(telefone);
-        a.setDataHora(dataHora);
+        a.setData(myFormattedDate);
+        a.setHora(hora);
         dao.update(a);
 
     }
-
-    
-    
 
 }

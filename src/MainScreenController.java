@@ -24,7 +24,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class MainScreenController implements Initializable{
+public class MainScreenController implements Initializable {
 
     @FXML
     private Button buttonAtualizar;
@@ -63,7 +63,7 @@ public class MainScreenController implements Initializable{
 
     private Agenda selected;
 
-    public void fecha(){
+    public void fecha() {
         AppMainScreen.getStage().close();
     }
 
@@ -74,21 +74,21 @@ public class MainScreenController implements Initializable{
         initTableDate(myFormattedDate);
     }
 
-    public void initTableDate(String data){
+    public void initTableDate(String data) {
         tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nomeCliente"));
         tableColumnHorario.setCellValueFactory(new PropertyValueFactory<>("hora"));
         tableColumnServico.setCellValueFactory(new PropertyValueFactory<>("servico"));
         tableColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
         tableColumnData.setCellValueFactory(new PropertyValueFactory<>("data"));
-        tableViewCadastros.setItems(atualizaTabelaData(data));
+        // tableViewCadastros.setItems(atualizaTabelaData(data));
     }
 
-    public ObservableList<Agenda> atualizaTabelaData(String data){
+    public ObservableList<Agenda> atualizaTabelaData(String data) {
         AgendaDAO dao = new AgendaDAO();
         List<Agenda> lista = dao.getList();
         List<Agenda> saida = new ArrayList<Agenda>();
-        for(Agenda ele: lista){
-            if(ele.getData().equals(data)){
+        for (Agenda ele : lista) {
+            if (ele.getData().equals(data)) {
                 saida.add(ele);
             }
         }
@@ -99,9 +99,10 @@ public class MainScreenController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         initTable();
         buttonAtualizar.setOnMouseClicked((MouseEvent e) -> {
-            initTable();;
+            initTable();
+            ;
         });
-        buttonCadastrar.setOnMouseClicked((MouseEvent e) ->{
+        buttonCadastrar.setOnMouseClicked((MouseEvent e) -> {
             AppAlterarPessoa.getStage().close();
             AppAgenda appA = new AppAgenda();
             try {
@@ -111,22 +112,31 @@ public class MainScreenController implements Initializable{
             }
         });
         buttonEditar.setOnMouseClicked((MouseEvent e) -> {
-            if(selected != null){
-                if(AppAgenda.getStage() != null){
+            if (selected != null) {
+                if (AppAgenda.getStage() != null) {
                     AppAgenda.getStage().close();
                 }
                 AppAlterarPessoa appP = new AppAlterarPessoa(selected);
-            try {
-                appP.start(new Stage());                
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-            }else{
+                try {
+                    appP.start(new Stage());
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            } else {
                 Alert a = new Alert(AlertType.WARNING);
                 a.setHeaderText("Selecione um usuário");
                 a.show();
             }
-            
+
+        });
+        buttonCancelar.setOnMouseClicked((MouseEvent e) -> {
+            if (selected != null) {
+                cancelarHorario(selected);
+            } else {
+                Alert a = new Alert(AlertType.WARNING);
+                a.setHeaderText("Selecione um usuário");
+                a.show();
+            }
         });
         tableViewCadastros.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
 
@@ -147,7 +157,7 @@ public class MainScreenController implements Initializable{
         });
     }
 
-    public void initTable(){
+    public void initTable() {
         tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nomeCliente"));
         tableColumnHorario.setCellValueFactory(new PropertyValueFactory<>("hora"));
         tableColumnServico.setCellValueFactory(new PropertyValueFactory<>("servico"));
@@ -156,10 +166,15 @@ public class MainScreenController implements Initializable{
         tableViewCadastros.setItems(atualizaTabela());
     }
 
-    public ObservableList<Agenda> atualizaTabela(){
+    public ObservableList<Agenda> atualizaTabela() {
         AgendaDAO dao = new AgendaDAO();
         return FXCollections.observableArrayList(dao.getList());
     }
 
-}
+    public void cancelarHorario(Agenda selected) {
+        AgendaDAO dao = new AgendaDAO();
+        selected.cancelarHorario();
+        dao.update(selected);
+    }
 
+}

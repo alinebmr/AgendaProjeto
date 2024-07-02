@@ -10,22 +10,14 @@
             "request": "launch",
             "mainClass": "AppAlterarPessoa",
             "projectName": "agenda_893df022",
-            "vmArgs": "--module-path D:/JavaLibs/javafx-sdk-22/lib --add-modules javafx.controls,javafx.fxml"
-        },
-        {
-            "type": "java",
-            "name": "Tste",
-            "request": "launch",
-            "mainClass": "Agenda.Tste",
-            "projectName": "agenda_893df022"
+            "vmArgs": " --module-path D:/JavaLibs/javafx-sdk-22.0.1/lib --add-modules javafx.controls,javafx.fxml "
         },
         {
             "type": "java",
             "name": "AppMainScreen",
             "request": "launch",
             "mainClass": "AppMainScreen",
-            "projectName": "agenda_893df022",
-            "vmArgs": "--module-path D:/JavaLibs/javafx-sdk-22/lib --add-modules javafx.controls,javafx.fxml"
+            "vmArgs": " --module-path D:/JavaLibs/javafx-sdk-22.0.1/lib --add-modules javafx.controls,javafx.fxml "
         },
         {
             "type": "java",
@@ -33,7 +25,7 @@
             "request": "launch",
             "mainClass": "AppAgenda",
             "projectName": "agenda_893df022",
-            "vmArgs": "--module-path D:/JavaLibs/javafx-sdk-22/lib --add-modules javafx.controls,javafx.fxml"
+            "vmArgs": " --module-path D:/JavaLibs/javafx-sdk-22.0.1/lib --add-modules javafx.controls,javafx.fxml "
         },
         {
             "type": "java",
