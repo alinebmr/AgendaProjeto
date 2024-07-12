@@ -6,29 +6,6 @@
     "configurations": [
         {
             "type": "java",
-            "name": "AppAlterarPessoa",
-            "request": "launch",
-            "mainClass": "AppAlterarPessoa",
-            "projectName": "agenda_893df022",
-            "vmArgs": " --module-path D:/JavaLibs/javafx-sdk-22.0.1/lib --add-modules javafx.controls,javafx.fxml "
-        },
-        {
-            "type": "java",
-            "name": "AppMainScreen",
-            "request": "launch",
-            "mainClass": "AppMainScreen",
-            "vmArgs": " --module-path D:/JavaLibs/javafx-sdk-22.0.1/lib --add-modules javafx.controls,javafx.fxml "
-        },
-        {
-            "type": "java",
-            "name": "AppAgenda",
-            "request": "launch",
-            "mainClass": "AppAgenda",
-            "projectName": "agenda_893df022",
-            "vmArgs": " --module-path D:/JavaLibs/javafx-sdk-22.0.1/lib --add-modules javafx.controls,javafx.fxml "
-        },
-        {
-            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
@@ -37,8 +14,31 @@
             "type": "java",
             "name": "Teste",
             "request": "launch",
+            "mainClass": "Agenda.Teste",
+            "projectName": "AgendaProjeto_da2dee44"
+        },
+        {
+            "type": "java",
+            "name": "Launch AppAgenda",
+            "request": "launch",
+            "mainClass": "AppAgenda",
+            "projectName": "AgendaProjeto_da2dee44",
+            "vmArgs": " --module-path D:/JavaLibs/javafx-sdk-22.0.1/lib --add-modules javafx.controls,javafx.fxml "
+        },
+        {
+            "type": "java",
+            "name": "Launch AppMainScreen",
+            "request": "launch",
+            "mainClass": "AppMainScreen",
+            "projectName": "AgendaProjeto_da2dee44",
+            "vmArgs": " --module-path D:/JavaLibs/javafx-sdk-22.0.1/lib --add-modules javafx.controls,javafx.fxml "
+        },
+        {
+            "type": "java",
+            "name": "Teste(1)",
+            "request": "launch",
             "mainClass": "ConexaoFireBird.Teste",
-            "projectName": "agenda_893df022"
+            "projectName": "AgendaProjeto_da2dee44"
         }
     ]
 }

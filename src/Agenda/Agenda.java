@@ -1,5 +1,7 @@
 package Agenda;
 
+import javafx.scene.control.Button;
+
 public class Agenda {
 
     private Long registro = (long) 1;
@@ -9,10 +11,28 @@ public class Agenda {
     private String hora;
     private String servico;
     private String data;
-    private char status;
+    private String status;
+    private String prioridade;
+    private Button button;
 
     public Agenda() {
+        this.button = new Button("Concluir");
+    }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getPrioridade() {
+        return prioridade;
+    }
+
+    public void setPrioridade(String prioridade) {
+        this.prioridade = prioridade;
     }
 
     public Agenda(String nomeCliente, String telefone_Cliente, String dataHora, String nomeServico, Long registro) {
@@ -21,11 +41,14 @@ public class Agenda {
         this.telefone = telefone_Cliente;
         this.servico = nomeServico;
         this.registro = registro;
-        this.status = 'A';
+        this.status = "Em atendimento";
         this.dataHora = dataHora;
-        setData(dataHora);
-        setHora(dataHora);
+        this.button = new Button("Concluir");
 
+    }
+
+    public void setRegistro(Long registro) {
+        this.registro = registro;
     }
 
     public Long getRegistro() {
@@ -40,29 +63,18 @@ public class Agenda {
         this.nomeCliente = nomeCliente;
     }
 
-    public String getDataHora() {
-        return dataHora;
-    }
-
     public void setDataHora(String dataHora) {
         this.dataHora = dataHora;
-        if (dataHora != null) {
-            String dataHoraSplit[] = dataHora.split(" ");
-            this.data = dataHoraSplit[0];
-            String horaSplit[] = dataHoraSplit[1].split(":");
-            hora = horaSplit[0] + ":" + horaSplit[1];
 
-        }
+        String[] dataHoraSplit = dataHora.split(" ");
+        String data = dataHoraSplit[0];
+        String[] horaSplit = (dataHoraSplit[1]).split(":");
         setData(data);
-        setHora(hora);
+        setHora(horaSplit[0] + ":" + horaSplit[1]);
     }
 
-    public void setHora(String hora) {
-        if (dataHora != null) {
-            String dataHoraSplit[] = dataHora.split(" ");
-            this.hora = horaSplit[0] + ":" + horaSplit[1];
-
-        }
+    public String getDataHora() {
+        return dataHora;
     }
 
     public void setData(String data) {
@@ -115,6 +127,10 @@ public class Agenda {
         return this.telefone;
     }
 
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
     public String getHora() {
         return this.hora;
     }
@@ -123,16 +139,20 @@ public class Agenda {
         return this.data;
     }
 
-    public void cancelarHorario() {
-        this.status = 'C';
+    public void concluirAtendimento() {
+        this.status = "Atendido";
     }
 
-    public char getStatus() {
-        return this.status;
+    public void retornarParaEspera() {
+        this.status = "Em Espera";
     }
 
-    public void setStatus(char status) {
-        this.status = status;
+    public Button getButton() {
+        return button;
+    }
+
+    public void setButton(Button button) {
+        this.button = button;
     }
 
 }
