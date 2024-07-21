@@ -1,11 +1,14 @@
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 import Agenda.Agenda;
 import DAO.AgendaDAO;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -37,6 +40,8 @@ public class AgendaController implements Initializable {
     @FXML
     private CheckBox checkBoxPrioridade;
 
+    List<Button> button = new ArrayList<>();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         buttonCadastro.setOnMouseClicked((MouseEvent e) -> {
@@ -46,7 +51,6 @@ public class AgendaController implements Initializable {
         buttonCancelar.setOnMouseClicked((MouseEvent e) -> {
             fecha();
         });
-
     }
 
     private void fecha() {

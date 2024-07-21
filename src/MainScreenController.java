@@ -20,6 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
@@ -27,6 +28,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class MainScreenController implements Initializable {
 
@@ -73,7 +75,7 @@ public class MainScreenController implements Initializable {
     private TableView<Agenda> tableViewCadastros;
 
     @FXML
-    private TableColumn<?, ?> tableColumnAction;
+    private TableColumn tableColumnAction;
 
     private String myFormattedDate;
 
@@ -95,8 +97,46 @@ public class MainScreenController implements Initializable {
         tableColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
         tableColumnPrioridade.setCellValueFactory(new PropertyValueFactory<>("prioridade"));
         tableColumnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        tableColumnAction.setCellValueFactory(new PropertyValueFactory<>("button"));
+        tableColumnAction.setCellValueFactory(new PropertyValueFactory<>(""));
+
+        // Resolver
+        Callback<TableColumn<Agenda, String>, TableCell<Agenda, String>> cellFactory = (param) -> {
+
+            final TableCell<Agenda, String> cell = new TableCell<Agenda, String>() {
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+
+                    if (empty) {
+                        setGraphic(null);
+                        setText(null);
+                    } else {
+                        final Button concluseButton = new Button("Atendido");
+                        concluseButton.setOnAction(event -> {
+                            Agenda agenda = getTableView().getItems().get(getIndex());
+                            atendeCliente(agenda);
+                            showItems("Em Espera");
+                            initTableDate(myFormattedDate);
+
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setContentText("Voce concluiu o atendimento de " + agenda.getNomeCliente());
+                            alert.show();
+
+                        });
+                        setGraphic(concluseButton);
+                        setText(null);
+
+                    }
+
+                }
+
+            };
+            return cell;
+
+        };
+        tableColumnAction.setCellFactory(cellFactory);
         tableViewCadastros.setItems(atualizaTabelaData(data));
+
     }
 
     public ObservableList<Agenda> atualizaTabelaData(String data) {
@@ -156,10 +196,13 @@ public class MainScreenController implements Initializable {
         buttonCadastrar.setOnMouseClicked((MouseEvent e) -> {
             AppAgenda appA = new AppAgenda();
             try {
+
                 appA.start(new Stage());
+
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
+
         });
 
         comboBoxStatus.setOnAction((event) -> {
@@ -204,32 +247,6 @@ public class MainScreenController implements Initializable {
             return FXCollections.observableArrayList(saida);
         }
 
-    }
-
-    // Retorna a lista de clientes atendidos
-    public ObservableList<Agenda> listaAtendidos() {
-        AgendaDAO dao = new AgendaDAO();
-        List<Agenda> lista = dao.getList();
-        List<Agenda> saida = new ArrayList<Agenda>();
-        for (Agenda ele : lista) {
-            if (ele.getData().equals(myFormattedDate) && ele.getStatus().equals("Atendido")) {
-                saida.add(ele);
-            }
-        }
-        return FXCollections.observableArrayList(saida);
-    }
-
-    // Retorna a lista de clientes em atendimento
-    public ObservableList<Agenda> listaEmEspera() {
-        AgendaDAO dao = new AgendaDAO();
-        List<Agenda> lista = dao.getList();
-        List<Agenda> saida = new ArrayList<Agenda>();
-        for (Agenda ele : lista) {
-            if (ele.getData().equals(myFormattedDate) && ele.getStatus().equals("Em Espera")) {
-                saida.add(ele);
-            }
-        }
-        return FXCollections.observableArrayList(saida);
     }
 
     // Registra quando um cliente foi atendido

@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class AppMainScreen extends Application {
@@ -19,6 +20,7 @@ public class AppMainScreen extends Application {
         scene.getStylesheets().add(css);
         secondStage.setTitle("Tela De Visualizacao");
         secondStage.setScene(scene);
+
         secondStage.show();
         setStage(secondStage);
 

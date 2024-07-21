@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class AppAgenda extends Application {
@@ -18,16 +19,17 @@ public class AppAgenda extends Application {
         Scene scene = new Scene(root);
         primaryStage.setTitle("Agenda Cadastro");
         primaryStage.setScene(scene);
+
         primaryStage.show();
         setStage(primaryStage);
 
     }
 
-    public static Stage getStage(){
+    public static Stage getStage() {
         return stage;
     }
 
-    public void setStage(Stage stage){
+    public void setStage(Stage stage) {
         AppAgenda.stage = stage;
     }
 

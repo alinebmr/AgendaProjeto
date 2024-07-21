@@ -13,10 +13,9 @@ public class Agenda {
     private String data;
     private String status;
     private String prioridade;
-    private Button button;
 
     public Agenda() {
-        this.button = new Button("Concluir");
+
     }
 
     public String getStatus() {
@@ -43,7 +42,6 @@ public class Agenda {
         this.registro = registro;
         this.status = "Em atendimento";
         this.dataHora = dataHora;
-        this.button = new Button("Concluir");
 
     }
 
@@ -146,13 +144,4 @@ public class Agenda {
     public void retornarParaEspera() {
         this.status = "Em Espera";
     }
-
-    public Button getButton() {
-        return button;
-    }
-
-    public void setButton(Button button) {
-        this.button = button;
-    }
-
 }
